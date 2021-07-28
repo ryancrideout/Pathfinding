@@ -1,0 +1,8 @@
+These are some helpful notes for my little C++ adventure.
+
+1) To compile pieces of code, type "cl"
+Usage is as follows:
+
+cl <filename> <filename> etc.
+
+Fore to follow!
