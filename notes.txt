@@ -5,4 +5,7 @@ Usage is as follows:
 
 cl <filename> <filename> etc.
 
-Fore to follow!
+More to follow!
+
+2) The command terminal we want to use for developing is:
+Developer Command Prompt for VS 2017
