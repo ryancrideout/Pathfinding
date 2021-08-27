@@ -97,11 +97,44 @@ class Vehicle {
 
         void load_map(Map m){
             map = m;
-        };
+
+            // Need to check that our starting location isn't on a piece of impassable terrain.
+            MapTile map_tile;
+            map_tile = map.map_tile[position.first][position.second];
+            if (map_tile.passable != true){
+                    find_new_starting_position(map);
+                };
+            };
 
         string find_path(int x, int y){
             return "Ah ha, yes! I figured it out.";
         };
+
+    private:
+        void find_new_starting_position(Map m){
+            Map map;
+            map = m;
+
+            // Map Tile isn't passable, find a new tile to be our starting position.
+            for (int i = -1; i < 2; i++){
+                for (int j = -1; j < 2; j++){
+                    MapTile new_map_tile;
+                    new_map_tile = map.map_tile[position.first + i][position.second + j];
+
+                    // New Map Tile is passable, set the position of the vehicle to be the coordinates of the 
+                    // new map tile.
+                    if (new_map_tile.passable == true){
+                        position.first = new_map_tile.x_coordinate;
+                        position.second = new_map_tile.y_coordinate;
+
+                        // We have our vehicle on passable terrain, we're done here. Use a goto to break out of
+                        // these loops.
+                        return;
+                    };
+                };
+        }
+
+    };
 };
 
 
@@ -113,6 +146,9 @@ int main(){
 
     first_vehicle.load_map(first_map);
     // cout << first_vehicle.find_path(3, 3) << "\n";
+
+    // Also need to find a way to display the vehicle on the map... Maybe put a "V" on there or something?
+    // Maybe have an "occupied" or something attribute on the Map Tile? I'll have to think about this.
     first_map.display_map();
 
     return 0;
