@@ -5,6 +5,8 @@ Usage is as follows:
 
 cl <filename> <filename> etc.
 
+E.G., cl main.cpp
+
 More to follow!
 
 2) The command terminal we want to use for developing is:

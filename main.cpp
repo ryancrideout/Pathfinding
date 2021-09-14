@@ -44,6 +44,7 @@ class Map {
             generate_map();
         };
 
+        // This is our method that we use to generate a map.
         void generate_map(){
             // We need srand in order to get truly random numbers.
             srand((unsigned int)time(NULL));
@@ -66,22 +67,6 @@ class Map {
                 };
             };   
         };
-
-        void display_map(){
-            for(int y_coord = 0; y_coord < height; y_coord++) {
-                for(int x_coord = 0; x_coord < width; x_coord++){
-                    MapTile maptile = map_tile[x_coord][y_coord];
-                    if (maptile.passable == true){
-                        cout << '-';
-                    }
-                    else{
-                        cout << 'X';
-                    }
-                };
-                // This marks the next row of the map.
-                cout << "\n";
-            };  
-        };
       
 };
 
@@ -95,6 +80,7 @@ class Vehicle {
             position.second = y;
         };
 
+        // This function ties a map to a vehicle. 
         void load_map(Map m){
             map = m;
 
@@ -106,8 +92,30 @@ class Vehicle {
                 };
             };
 
+        // This is a method to find the most optimal path, if given coordinates.
         string find_path(int x, int y){
+            // So I don't forget, this is where the pathfinding algorithm should live.
             return "Ah ha, yes! I figured it out.";
+        };
+
+        // This is a function to, well, display the map.
+        void display_map(){
+            for(int y_coord = 0; y_coord < map.height; y_coord++) {
+                for(int x_coord = 0; x_coord < map.width; x_coord++){
+                    MapTile maptile = map.map_tile[x_coord][y_coord];
+                    if (x_coord == position.first && y_coord == position.second) {
+                        cout << 'V';
+                    }
+                    else if (maptile.passable == true){
+                        cout << '-';
+                    }
+                    else{
+                        cout << 'X';
+                    }
+                };
+                // This marks the next row of the map.
+                cout << "\n";
+            };  
         };
 
     private:
@@ -147,9 +155,8 @@ int main(){
     first_vehicle.load_map(first_map);
     // cout << first_vehicle.find_path(3, 3) << "\n";
 
-    // Also need to find a way to display the vehicle on the map... Maybe put a "V" on there or something?
-    // Maybe have an "occupied" or something attribute on the Map Tile? I'll have to think about this.
-    first_map.display_map();
+    // first_map.display_map();
+    first_vehicle.display_map();
 
     return 0;
 };
