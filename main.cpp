@@ -153,10 +153,48 @@ int main(){
     Vehicle first_vehicle(1, 1);
 
     first_vehicle.load_map(first_map);
+
+    // Not currently being used.
     // cout << first_vehicle.find_path(3, 3) << "\n";
 
-    // first_map.display_map();
-    first_vehicle.display_map();
+    // first_vehicle.display_map();
+
+    string command = "coordinates";
+    string response = "empty";
+
+    string x_coordinate;
+    string y_coordinate;
+
+    cout << "Hi welcome to my INSANE Pathfinding code project." << "\n";
+    cout << "Enough small talk, give me some coordinates." << "\n";
+
+    while (command != "terminate") {
+        
+        // The command to initialize a Map object; This sets the size of our map.
+        // This is also the first command we run.
+        if (command == "coordinates") {
+            cout << "Give me an X coordinate:" << "\n";
+            getline(cin, x_coordinate);
+
+            cout << "Now give me a Y coordinate you sultry vixen:" << "\n";
+            getline(cin, y_coordinate);
+
+            cout << "Alright is this the size you wanted the map to be?" << "\n";
+            cout << "(" << x_coordinate << ", " << y_coordinate << ")" << "\n";
+            getline(cin, response);
+
+            // If 'yes', cast the coordinates to ints.
+            if (response == "yes") {
+                // Need to change this to 'if response in array'
+                cout << "Shoryuken!" << "\n";
+            }
+
+            // If 'no', redo the whole thing. Remember 'command' is already set to 'coordinates',
+            // so we don't need to reassign it.
+        };
+
+
+    };
 
     return 0;
 };
