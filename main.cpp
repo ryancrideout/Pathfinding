@@ -149,10 +149,10 @@ class Vehicle {
 // This is the main function.
 int main(){
 
-    Map first_map(10, 20);
-    Vehicle first_vehicle(1, 1);
+    // Map first_map(10, 20);
+    // Vehicle first_vehicle(1, 1);
 
-    first_vehicle.load_map(first_map);
+    // first_vehicle.load_map(first_map);
 
     // Not currently being used.
     // cout << first_vehicle.find_path(3, 3) << "\n";
@@ -164,6 +164,8 @@ int main(){
 
     string x_coordinate;
     string y_coordinate;
+
+    vector<string> yes_reponse = {"yes", "y", "sure", "ya", "yeah", "Yes", "Y"}; 
 
     cout << "Hi welcome to my INSANE Pathfinding code project." << "\n";
     cout << "Enough small talk, give me some coordinates." << "\n";
@@ -184,15 +186,77 @@ int main(){
             getline(cin, response);
 
             // If 'yes', cast the coordinates to ints.
-            if (response == "yes") {
-                // Need to change this to 'if response in array'
-                cout << "Shoryuken!" << "\n";
+            if (find(yes_reponse.begin(), yes_response.end(), response) != yes_response.end()) {
+                int int_x_cord = stoi(x_coordinate);
+                int int_y_cord = stoi(y_coordinate);
+                
+                // Make our map.
+                Map first_map(int_x_cord, int_y_cord);
+
+                cout << "Map made! Now give me a new command." << "\n";
+                cout << "(Type 'help' for a list of commands.)" << "\n";
+                getline(cin, command);
             }
 
             // If 'no', redo the whole thing. Remember 'command' is already set to 'coordinates',
             // so we don't need to reassign it.
         };
 
+        if (command == "help") {
+            // Gives a list of commands and the like.
+            cout << "Here are a list of the following commands and what they do:" << "\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << "\n";
+            cout << "coordinates - This creates a map with user defined coordinates." << "\n";
+            cout << "vehicle - This creates a vehicle with a user defined starting coordinates." << "\n";
+            cout << "display - This displays the map." << "\n";
+            cout << "pathfind - Finds a path from point A to point B." << "\n";
+            cout << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << "\n";
+            cout << "(Type 'help' for a list of commands.)" << "\n";
+            getline(cin, command);
+        };
+
+        if (command == "vehicle") {
+            // Create a vehicle object and set starting coordinates.
+            cout << "Give me some starting coordinates for this vehicle:" << "\n";
+            cout << "First, an X coordinate:" << "\n";
+            getline(cin, x_coordinate);
+
+            cout << "Now, a Y coordinate:" << "\n";
+            getline(cin, y_coordinate);
+
+            cout << "Is this the starting location you want for your vehicle?" << "\n";
+            cout << "(" << x_coordinate << ", " << y_coordinate << ")" << "\n";
+            getline(cin, response);
+
+            // If 'yes', cast the coordinates to ints.
+            if (find(yes_reponse.begin(), yes_response.end(), response) != yes_response.end()) {
+                int int_x_cord = stoi(x_coordinate);
+                int int_y_cord = stoi(y_coordinate);
+                
+                // Create a vehicle with the specified coordinates.
+                Vehicle first_vehicle(int_x_cord, int_y_cord);
+
+                cout << "Vehicle made! Now give me a new command." << "\n";
+                cout << "(Type 'help' for a list of commands.)" << "\n";
+                getline(cin, command);
+            }
+
+            // If 'no', redo the whole thing. Remember 'command' is already set to 'coordinates',
+            // so we don't need to reassign it.
+        };
+
+        if (command == "display") {
+            // Display map function
+            first_vehicle.display_map()
+
+            cout << "Map displayed. Give me another command."
+            cout << "(Type 'help' for a list of commands.)" << "\n";
+            getline(cin, command);
+        };
+
+        // if (command == "pathfind") {
+            // This is the big pathfinding function command.
+        // };
 
     };
 
