@@ -3,6 +3,7 @@
 #include <ctime>
 #include <map>
 #include <string>
+#include <vector>
 using namespace std;
 
 class MapTile {
@@ -165,7 +166,10 @@ int main(){
     string x_coordinate;
     string y_coordinate;
 
-    vector<string> yes_reponse = {"yes", "y", "sure", "ya", "yeah", "Yes", "Y"}; 
+    vector<string> yes_response{"yes", "y", "sure", "ya", "yeah", "Yes", "Y"}; 
+
+    Vehicle main_vehicle(1, 1);
+    Map main_map(10, 10);
 
     cout << "Hi welcome to my INSANE Pathfinding code project." << "\n";
     cout << "Enough small talk, give me some coordinates." << "\n";
@@ -186,12 +190,14 @@ int main(){
             getline(cin, response);
 
             // If 'yes', cast the coordinates to ints.
-            if (find(yes_reponse.begin(), yes_response.end(), response) != yes_response.end()) {
+            if (find(yes_response.begin(), yes_response.end(), response) != yes_response.end()) {
                 int int_x_cord = stoi(x_coordinate);
                 int int_y_cord = stoi(y_coordinate);
                 
                 // Make our map.
                 Map first_map(int_x_cord, int_y_cord);
+                main_map = first_map;
+                main_vehicle.load_map(main_map);
 
                 cout << "Map made! Now give me a new command." << "\n";
                 cout << "(Type 'help' for a list of commands.)" << "\n";
@@ -229,12 +235,16 @@ int main(){
             getline(cin, response);
 
             // If 'yes', cast the coordinates to ints.
-            if (find(yes_reponse.begin(), yes_response.end(), response) != yes_response.end()) {
+            if (find(yes_response.begin(), yes_response.end(), response) != yes_response.end()) {
                 int int_x_cord = stoi(x_coordinate);
                 int int_y_cord = stoi(y_coordinate);
                 
                 // Create a vehicle with the specified coordinates.
                 Vehicle first_vehicle(int_x_cord, int_y_cord);
+                main_vehicle = first_vehicle;
+
+                // Load up the map
+                main_vehicle.load_map(main_map);
 
                 cout << "Vehicle made! Now give me a new command." << "\n";
                 cout << "(Type 'help' for a list of commands.)" << "\n";
@@ -247,9 +257,9 @@ int main(){
 
         if (command == "display") {
             // Display map function
-            first_vehicle.display_map()
+            main_vehicle.display_map();
 
-            cout << "Map displayed. Give me another command."
+            cout << "Map displayed. Give me another command." << "\n";
             cout << "(Type 'help' for a list of commands.)" << "\n";
             getline(cin, command);
         };
