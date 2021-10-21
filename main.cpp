@@ -179,6 +179,7 @@ int main(){
         // The command to initialize a Map object; This sets the size of our map.
         // This is also the first command we run.
         if (command == "coordinates") {
+            cout << "\n";
             cout << "Give me an X coordinate:" << "\n";
             getline(cin, x_coordinate);
 
@@ -195,7 +196,7 @@ int main(){
                 int int_y_cord = stoi(y_coordinate);
                 
                 // Make our map.
-                Map first_map(int_x_cord, int_y_cord);
+                Map first_map(int_y_cord, int_x_cord);
                 main_map = first_map;
                 main_vehicle.load_map(main_map);
 
@@ -209,6 +210,7 @@ int main(){
         };
 
         if (command == "help") {
+            cout << "\n";
             // Gives a list of commands and the like.
             cout << "Here are a list of the following commands and what they do:" << "\n";
             cout << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << "\n";
@@ -222,6 +224,7 @@ int main(){
         };
 
         if (command == "vehicle") {
+            cout << "\n";
             // Create a vehicle object and set starting coordinates.
             cout << "Give me some starting coordinates for this vehicle:" << "\n";
             cout << "First, an X coordinate:" << "\n";
@@ -240,7 +243,7 @@ int main(){
                 int int_y_cord = stoi(y_coordinate);
                 
                 // Create a vehicle with the specified coordinates.
-                Vehicle first_vehicle(int_x_cord, int_y_cord);
+                Vehicle first_vehicle(int_y_cord, int_x_cord);
                 main_vehicle = first_vehicle;
 
                 // Load up the map
@@ -256,6 +259,7 @@ int main(){
         };
 
         if (command == "display") {
+            cout << "\n";
             // Display map function
             main_vehicle.display_map();
 
