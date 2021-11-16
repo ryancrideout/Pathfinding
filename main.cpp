@@ -218,6 +218,7 @@ int main(){
             cout << "vehicle - This creates a vehicle with a user defined starting coordinates." << "\n";
             cout << "display - This displays the map." << "\n";
             cout << "pathfind - Finds a path from point A to point B." << "\n";
+            cout << "terminate - Grants you sweet, sweet release." << "\n";
             cout << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << "\n";
             cout << "(Type 'help' for a list of commands.)" << "\n";
             getline(cin, command);
@@ -268,9 +269,41 @@ int main(){
             getline(cin, command);
         };
 
-        // if (command == "pathfind") {
-            // This is the big pathfinding function command.
-        // };
+        if (command == "pathfind") {
+            cout << "\n";
+            /*
+            I mean where do you even start with this?
+
+            List of stuff:
+            1) Get Destination X and Y.
+            2) Find Path...
+            3) Mark the best path on the Map.
+            4) Display Map. Done.
+
+            Alright but how do we find the best path?
+
+            - Well you can count how many "steps" you take, and the path with the least steps is "best"
+
+            - Depending on the obstacles though, you might need to move "away" from the destination to make progress.
+
+            - Will need to calculate several routes. I guess you could brute force it, so with every tile, you go in
+              every direction, and then with every direction you make a new path. Paths that lead into obstacles will
+              "die" and won't use path calculations.
+
+            - First path to reach destination will be the best path. I think for EACH tile step you update all of the paths.
+              So going (for example) from step 4 -> 5 you would update all of the existing paths. Kill any of them that hit
+              dead ends.
+
+            - I guess we could try an "intelligent" method first and only consider paths that move "towards" the destination
+              but that could be hard to calculate.
+
+            - Worth reading: https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
+            */
+
+            cout << "Path found. Give me another command." << "\n";
+            cout << "(Type 'help' for a list of commands.)" << "\n";
+            getline(cin, command);
+        };
 
     };
 
