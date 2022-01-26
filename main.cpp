@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 #include <map>
 #include <string>
 #include <vector>
@@ -271,6 +272,58 @@ int main(){
 
         if (command == "pathfind") {
             cout << "\n";
+
+            // Give current vehicle coordinates
+            cout << "Here are the current vehicle coordinates:" << "\n";
+            cout << "(" << main_vehicle.position.first << ", " << main_vehicle.position.second << ")" << "\n";
+            cout << "\n";
+
+            // Ask for destination coordinates
+            cout << "Give me a DESTINATION X coordinate:" << "\n";
+            getline(cin, x_coordinate);
+
+            cout << "Now give me a DESTINATION Y coordinate:" << "\n";
+            getline(cin, y_coordinate);
+
+            // Variable declarations to help make our lives easier.
+            float starting_x = main_vehicle.position.first;
+            float starting_y = main_vehicle.position.second;
+            float current_x = starting_x;
+            float current_y = starting_y;
+            float destination_x = stoi(x_coordinate);
+            float destination_y = stoi(y_coordinate);
+
+            // These might need to be a vector of something else.
+            vector<float> open_vector = {};
+            vector<float> closed_vector = {};
+
+            // Put current x and y into the open vector, do we need to identify it as the starting point?
+
+            bool at_destination = false;
+            while (not at_destination) {
+
+                at_destination = true;
+            }
+
+            /*
+            Okay so what I realized is that I need to get the distance from:
+            The current node and the starting node
+            The current node and the ending node
+            */
+            float starting_x_distance = abs(main_vehicle.position.first - starting_x);
+            float starting_y_distance = abs(main_vehicle.position.second - starting_y);
+            float starting_x_squared = pow(starting_x_distance, 2);
+            float starting_y_squared = pow(starting_y_distance, 2);
+            float starting_distance = starting_x_squared + starting_y_squared;
+
+            float destination_x_distance = abs(main_vehicle.position.first - destination_x);
+            float destination_y_distance = abs(main_vehicle.position.second - destination_y);
+            float destination_x_squared = pow(destination_x_distance, 2);
+            float destination_y_squared = pow(destination_y_distance, 2);
+            float destination_distance = destination_x_squared + destination_y_squared;
+
+            // Need to make a path now... now how best to do it...
+
             /*
             I mean where do you even start with this?
 
