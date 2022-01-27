@@ -294,13 +294,43 @@ int main(){
             float destination_y = stoi(y_coordinate);
 
             // These might need to be a vector of something else.
-            vector<float> open_vector = {};
-            vector<float> closed_vector = {};
+            vector<vector<float>> open_vector;
+            vector<vector<float>> closed_vector;
 
             // Put current x and y into the open vector, do we need to identify it as the starting point?
+            // I think we need to add the "F" as well. Initial F is to be zero.
+            // Maybe add G and H as well?
+            vector<float> start_node = {starting_x, starting_y, 0};
+
+            // Add this to the open_vector
+            open_vector.push_back(start_node);
 
             bool at_destination = false;
             while (not at_destination) {
+
+                // Look for the lowest 'F' cost square on the open list. This is the current square.
+
+                // Take the current square, and then put it into the closed list.
+
+                // Then, for each of the 8 squares adjacent to the current square:
+                /*
+                - If it is not walkable or if it is on the closed list, ignore it. Otherwise
+
+                - If it isn't on the open list, add it to the open list. Make the current square
+                  the parent of that square. Record the F, G and H costs of the square.
+
+                - If it IS on the open list already, check to see if this path to that square is better,
+                  using G cost as the measure. A lower G cost means that this is a better path. If so,
+                  change the parent of the square to the current square, and recalculate the G and F
+                  scores of the square.
+                */
+
+               // Stop when you:
+               /*
+               - Add the target square to the closed list, in which case the path has been found, or
+
+               - Fail to find the target square, and the open list is empty. In this case, there is no path.
+               */
 
                 at_destination = true;
             }
