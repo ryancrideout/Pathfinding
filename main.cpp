@@ -153,6 +153,7 @@ int main(){
             float starting_y = main_vehicle.position.second;
             float current_x = starting_x;
             float current_y = starting_y;
+            // stoi == string to integer
             float destination_x = stoi(x_coordinate);
             float destination_y = stoi(y_coordinate);
 
@@ -168,10 +169,55 @@ int main(){
             // Add this to the open_vector
             open_vector.push_back(start_node);
 
+            float calculate_g(float current_x, float current_y, float starting_x, float starting_y){
+              // Distance between the current node and the start node
+              float starting_x_distance = abs(current_x - starting_x);
+              float starting_y_distance = abs(current_y - starting_y);
+              float starting_x_squared = pow(starting_x_distance, 2);
+              float starting_y_squared = pow(starting_y_distance, 2);
+              float starting_distance = starting_x_squared + starting_y_squared;
+
+              return starting_distance;
+            }
+
+            float calculate_h(float current_x, float current_y, float destination_x, float destination_y){
+              // Estimated distance from the current node to the end node
+              float destination_x_distance = abs(current_x - destination_x);
+              float destination_y_distance = abs(current_y - destination_y);
+              float destination_x_squared = pow(destination_x_distance, 2);
+              float destination_y_squared = pow(destination_y_distance, 2);
+              float destination_distance = destination_x_squared + destination_y_squared;
+
+              return destination_distance;
+            }
+
             bool at_destination = false;
             while (!at_destination) {
 
                 // Look for the lowest 'F' cost square on the open list. This is the current square.
+
+                // Need to get everything +- 1 from the cordinates.
+                for (int i = -1; i < 2; i++){
+                    if (current_x + i > main_map.width){
+                        continue;
+                    };
+                    if (current_x + i < 0){
+                        continue;
+                    };
+                    for (int j = -1; j < 2; j++){
+                        if (current_y + j > main_map.height){
+                            continue;
+                        };
+                        if (current_y + j < 0){
+                            continue;
+                        };
+                        maptile = main_map.map_tile[current_x + i][current_y + j];
+                        if !(maptile.passable) {
+                            continue;
+                        };
+                        // Calculate distances?
+                    }
+                }
 
                 // Take the current square, and then put it into the closed list.
 
